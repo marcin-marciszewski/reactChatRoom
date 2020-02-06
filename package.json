@@ -18,7 +18,9 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "materialize-css": "^1.0.0",
-    "mongoose": "^5.8.11"
+    "moment": "^2.24.0",
+    "mongoose": "^5.8.11",
+    "react-moment": "^0.9.7"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
