@@ -1,0 +1,85 @@
+#root {
+    height: 100%;
+}
+
+.chat {
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
+}
+
+
+.bubble {
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    word-wrap: break-word;
+    font-size: 1.2rem;
+}
+
+.bubble::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform: rotate(29deg) skew(-35deg);
+    -moz-transform: rotate(29deg) skew(-35deg);
+    -ms-transform: rotate(29deg) skew(-35deg);
+    -o-transform: rotate(29deg) skew(-35deg);
+    -webkit-transform: rotate(29deg) skew(-35deg);
+    width: 20px;
+}
+
+.you {
+    align-items: flex-end;
+    margin: 10px 60% 5px 20px;
+    background: #2294c5;
+    color: #fff;
+}
+
+.you::before {
+    box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, .4);
+    left: -9px;
+    background: #2294c5;
+}
+
+.me {
+    align-items: flex-start;
+    margin: 10px 20px 5px 60%;
+    background: #ece5dd;
+    color: #000;
+
+}
+
+.me::before {
+    box-shadow: 2px -2px 2px 0 rgba(178, 178, 178, .4);
+    right: -9px;
+    background: #ece5dd;
+
+}
+
+.message-field {
+    height: 50px;
+    margin: 50px 0;
+}
+
+.date-text {
+    font-size: 10px;
+}
+
+.btn-floating {
+    display: block;
+    margin: 50px auto;
+
+}
+
+.btn-floating i {
+    font-size: 40px;
+}

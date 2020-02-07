@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import MessageItem from './MessageItem';
 import Preloader from '../layout/Preloader';
 
@@ -24,10 +24,11 @@ const Messages = () => {
     return <Preloader />;
   }
   return (
-    <ul className='collection with-header'>
-      <li className='collection-header'>
-        <h4 className='center'> System Logs </h4>{' '}
-      </li>{' '}
+    // <ul className='collection with-header'>
+    //   <li className='collection-header'>
+    //     <h4 className='center'> System Logs </h4>{' '}
+    //   </li>{' '}
+    <div className='chat'>
       {!loading && messages.length === 0 ? (
         <p className='center'> No messages to show... </p>
       ) : (
@@ -35,7 +36,13 @@ const Messages = () => {
           <MessageItem message={message} key={message._id} />
         ))
       )}{' '}
-    </ul>
+      <div className='bubble you'>
+        saflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkf
+      </div>
+      <div className='bubble you'>
+        saflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkf
+      </div>{' '}
+    </div>
   );
 };
 

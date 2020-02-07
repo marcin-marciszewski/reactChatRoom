@@ -1,25 +1,37 @@
-import React, { useRef } from 'react';
+import React, {
+  useRef
+} from 'react';
 const SearchBar = () => {
-  return (
-    <nav
-      style={{
+  return ( <
+    nav style = {
+      {
         marginBottom: '30px'
-      }}
-      className='blue'
-    >
-      <div className='nav-wrapper'>
-        <form>
-          <div className='input-field'>
-            <input id='search' type='search' placeholder='Search Logs...' />{' '}
-            <label className='label-icon' htmlFor='search'>
-              {' '}
-              <i className='material-icons'> search </i>{' '}
-            </label>{' '}
-            <i className='material-icons'> close </i>{' '}
-          </div>{' '}
-        </form>{' '}
-      </div>{' '}
-    </nav>
+      }
+    }
+    className = 'blue' >
+    <
+    div className = 'nav-wrapper' >
+    <
+    form >
+    <
+    div className = 'input-field' >
+    <
+    input id = 'search'
+    type = 'search'
+    placeholder = 'Search Messages...' / > {
+      ' '
+    } <
+    label className = 'label-icon'
+    htmlFor = 'search' > {
+      ' '
+    } <
+    i className = 'material-icons' > search < /i>{' '} <
+    /label>{' '} <
+    i className = 'material-icons' > close < /i>{' '} <
+    /div>{' '} <
+    /form>{' '} <
+    /div>{' '} <
+    /nav>
   );
 };
 
