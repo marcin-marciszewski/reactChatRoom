@@ -39,14 +39,14 @@ const AddMessage = ({ user, addMessage }) => {
           <div className='row'>
             <div className='input-field col s8 offset-s2 message-field'>
               <i className='material-icons prefix'>mode_edit</i>
-              <textarea
-                id='icon_prefix2'
+              <input
+                id='content'
+                placeholder='Message'
                 name='content'
                 className='materialize-textarea'
                 value={content}
                 onChange={e => setContent(e.target.value)}
-              ></textarea>
-              <label htmlFor='icon_prefix2'>Message</label>
+              ></input>
 
               <button
                 className='btn waves-effect waves-light blue'

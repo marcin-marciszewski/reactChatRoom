@@ -18,11 +18,11 @@ const App = () => {
     <Provider store={store}>
       <Fragment>
         <SearchBar />
+        <AddMessage />
+        <AddUser />
         <div className='container'>
           <Messages />
         </div>{' '}
-        <AddMessage />
-        <AddUser />
       </Fragment>
     </Provider>
   );
