@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import MessageItem from './MessageItem';
 import Preloader from '../layout/Preloader';
@@ -6,19 +6,40 @@ import PropTypes from 'prop-types';
 import { getMessages } from '../../actions/messageActions';
 
 const Messages = ({ message: { messages, loading }, getMessages }) => {
-  useEffect(() => {
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest callback.
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  useInterval(() => {
     getMessages();
     //eslint-disable-next-line
-  }, []);
+  }, 1000);
+
+  // useEffect(() => {
+  //   getMessages();
+  //   //eslint-disable-next-line
+  // }, []);
 
   if (loading || messages === null) {
     return <Preloader />;
   }
   return (
-    // <ul className='collection with-header'>
-    //   <li className='collection-header'>
-    //     <h4 className='center'> System Logs </h4>{' '}
-    //   </li>{' '}
     <div className='chat'>
       {!loading && messages.length === 0 ? (
         <p className='center'> No messages to show... </p>
@@ -27,12 +48,6 @@ const Messages = ({ message: { messages, loading }, getMessages }) => {
           <MessageItem message={message} key={message._id} />
         ))
       )}{' '}
-      <div className='bubble you'>
-        saflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkf
-      </div>
-      <div className='bubble you'>
-        saflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkfsaflasdjkf
-      </div>{' '}
     </div>
   );
 };

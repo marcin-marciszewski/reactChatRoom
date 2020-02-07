@@ -5,13 +5,13 @@ import { deleteMessage } from '../../actions/messageActions';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const MessageItem = ({ message, deleteMessage }) => {
+const MessageItem = ({ user, message, deleteMessage }) => {
   const onDelete = () => {
     deleteMessage(message._id);
     M.toast({ html: 'Message Deleted' });
   };
   return (
-    <div className='bubble me'>
+    <div className={`bubble ${message.user === user ? 'me' : 'you'} `}>
       <p className='date-text'>~{message.user}</p>
       {message.content}
       <a href='#!' onClick={onDelete} className='secondary-content'>
@@ -27,7 +27,12 @@ const MessageItem = ({ message, deleteMessage }) => {
 
 MessageItem.propTypes = {
   message: PropTypes.object.isRequired,
+  user: PropTypes.object,
   deleteMessage: PropTypes.func.isRequired
 };
 
-export default connect(null, { deleteMessage })(MessageItem);
+const mapStateToProps = state => ({
+  user: state.message.user
+});
+
+export default connect(mapStateToProps, { deleteMessage })(MessageItem);

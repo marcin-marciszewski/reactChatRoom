@@ -33,7 +33,6 @@ router.get('/:content', async (req, res) => {
       date: -1
     });
     res.json(messages);
-    console.log(req.params.content)
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

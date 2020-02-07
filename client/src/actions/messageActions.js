@@ -62,7 +62,6 @@ export const addMessage = (message) => async dispatch => {
             }
         });
         const data = await res.json();
-        console.log(data)
 
         dispatch({
             type: ADD_MESSAGE,
@@ -106,7 +105,7 @@ export const addUser = (user) => async dispatch => {
 
         dispatch({
             type: ADD_USER,
-            payload: user
+            payload: user.user
         })
     } catch (err) {
         dispatch({

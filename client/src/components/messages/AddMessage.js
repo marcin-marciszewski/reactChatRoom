@@ -6,7 +6,6 @@ import { addMessage } from '../../actions/messageActions';
 
 const AddMessage = ({ user, addMessage }) => {
   const [content, setContent] = useState('');
-
   const onSubmit = e => {
     e.preventDefault();
     if (content === '') {
@@ -14,7 +13,7 @@ const AddMessage = ({ user, addMessage }) => {
     } else {
       const newMsg = {
         content,
-        user: user.user,
+        user: user,
         date: new Date()
       };
       addMessage(newMsg);
