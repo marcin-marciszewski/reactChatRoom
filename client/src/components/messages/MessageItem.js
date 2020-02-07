@@ -12,13 +12,15 @@ const MessageItem = ({ message, deleteMessage }) => {
   };
   return (
     <div className='bubble me'>
-      <p className='date-text'>
-        <Moment format='D MMMM YYYY, h:mm:ss a'>{message.date}</Moment>
-      </p>
+      <p className='date-text'>~{message.user}</p>
       {message.content}
       <a href='#!' onClick={onDelete} className='secondary-content'>
         <i className='material-icons grey-text'> delete </i>{' '}
       </a>{' '}
+      <p className='date-text'>
+        <Moment format='D MMMM YYYY, h:mm:ss a'>{message.date}</Moment>
+        {message.user}
+      </p>
     </div>
   );
 };
