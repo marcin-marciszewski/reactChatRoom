@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addUser } from '../../actions/messageActions';
 
-const AddUser = () => {
+const AddUser = ({ addUser }) => {
   const [user, setUser] = useState('');
 
   const onSubmit = () => {
     if (user === '') {
       M.toast({ html: 'Please enter the user name' });
     } else {
-      console.log(user);
+      const newUser = {
+        user
+      };
+      console.log(newUser);
+      addUser(newUser);
+
+      // Clear  Fields
+      setUser('');
     }
   };
   return (
@@ -43,4 +53,8 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+AddUser.propTypes = {
+  addUser: PropTypes.func.isRequired
+};
+
+export default connect(null, { addUser })(AddUser);

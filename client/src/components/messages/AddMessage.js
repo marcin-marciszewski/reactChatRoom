@@ -6,7 +6,6 @@ import { addMessage } from '../../actions/messageActions';
 
 const AddMessage = ({ addMessage }) => {
   const [content, setContent] = useState('');
-  const [user, setUser] = useState('');
 
   const onSubmit = e => {
     e.preventDefault();
@@ -15,27 +14,25 @@ const AddMessage = ({ addMessage }) => {
     } else {
       const newMsg = {
         content,
-        user,
         date: new Date()
       };
       addMessage(newMsg);
 
       // Clear  Fields
       setContent('');
-      setUser('');
     }
   };
 
   return (
     <Fragment>
-      {/* <div>
+      <div>
         <a
           href='#add-user-modal'
           className='btn-floating btn-large red modal-trigger '
         >
           <i className='material-icons'> person_add </i>{' '}
         </a>{' '}
-      </div> */}
+      </div>
       <form onSubmit={onSubmit} className='col s12'>
         <div className='row'>
           <div className='input-field col s8 offset-s2 message-field'>

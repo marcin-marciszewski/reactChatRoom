@@ -5,6 +5,7 @@ import {
     ADD_MESSAGE,
     DELETE_MESSAGE,
     SEARCH_MESSAGES,
+    ADD_USER
 } from './types';
 
 // Get messages from the server
@@ -61,6 +62,7 @@ export const addMessage = (message) => async dispatch => {
             }
         });
         const data = await res.json();
+        console.log(data)
 
         dispatch({
             type: ADD_MESSAGE,
@@ -94,6 +96,26 @@ export const deleteMessage = (_id) => async dispatch => {
         })
     }
 };
+
+// Add new user
+export const addUser = (user) => async dispatch => {
+    try {
+        setLoading();
+
+
+
+        dispatch({
+            type: ADD_USER,
+            payload: user
+        })
+    } catch (err) {
+        dispatch({
+            type: MESSAGES_ERROR,
+            payload: err.response.statusText
+        })
+    }
+};
+
 
 
 // Set loading to true

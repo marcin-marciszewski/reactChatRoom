@@ -5,13 +5,15 @@ import {
     ADD_MESSAGE,
     DELETE_MESSAGE,
     SEARCH_MESSAGES,
+    ADD_USER
 
 } from '../actions/types';
 
 const initialState = {
     messages: null,
     loading: false,
-    error: null
+    error: null,
+    user: null
 }
 
 export default (state = initialState, action) => {
@@ -44,6 +46,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            };
+        case ADD_USER:
+            return {
+                ...state,
+                user: action.payload,
+                    loading: false
             };
         case MESSAGES_ERROR:
             console.error(action.payload);
