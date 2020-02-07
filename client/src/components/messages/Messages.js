@@ -1,26 +1,17 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
 import MessageItem from './MessageItem';
 import Preloader from '../layout/Preloader';
+import PropTypes from 'prop-types';
+import { getMessages } from '../../actions/messageActions';
 
-const Messages = () => {
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+const Messages = ({ message: { messages, loading }, getMessages }) => {
   useEffect(() => {
-    getLogs();
+    getMessages();
     //eslint-disable-next-line
   }, []);
 
-  const getLogs = async () => {
-    setLoading(true);
-    const res = await fetch('/messages');
-    const data = await res.json();
-
-    setMessages(data);
-    setLoading(false);
-  };
-
-  if (loading) {
+  if (loading || messages === null) {
     return <Preloader />;
   }
   return (
@@ -46,4 +37,15 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+Messages.propTypes = {
+  message: PropTypes.object.isRequired,
+  getMessages: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  message: state.message
+});
+
+export default connect(mapStateToProps, {
+  getMessages
+})(Messages);

@@ -1,6 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
-const AddMessage = () => {
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addMessage } from '../../actions/messageActions';
+
+const AddMessage = ({ addMessage }) => {
   const [content, setContent] = useState('');
   const [user, setUser] = useState('');
 
@@ -9,21 +13,30 @@ const AddMessage = () => {
     if (content === '') {
       M.toast({ html: 'Please enter a message' });
     } else {
-      console.log(content);
+      const newMsg = {
+        content,
+        user,
+        date: new Date()
+      };
+      addMessage(newMsg);
+
+      // Clear  Fields
+      setContent('');
+      setUser('');
     }
   };
 
   return (
     <Fragment>
-      <div>
+      {/* <div>
         <a
           href='#add-user-modal'
           className='btn-floating btn-large red modal-trigger '
         >
           <i className='material-icons'> person_add </i>{' '}
         </a>{' '}
-      </div>
-      {/* <form onSubmit={onSubmit} className='col s12'>
+      </div> */}
+      <form onSubmit={onSubmit} className='col s12'>
         <div className='row'>
           <div className='input-field col s8 offset-s2 message-field'>
             <i className='material-icons prefix'>mode_edit</i>
@@ -46,9 +59,13 @@ const AddMessage = () => {
             </button>
           </div>
         </div>
-      </form> */}
+      </form>
     </Fragment>
   );
 };
 
-export default AddMessage;
+AddMessage.propTypes = {
+  addMessage: PropTypes.func.isRequired
+};
+
+export default connect(null, { addMessage })(AddMessage);

@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
+const {
+  check,
+  validationResult
+} = require('express-validator');
 
 const Message = require('../models/Message');
 
@@ -17,12 +20,32 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+//Get specific message 
+router.get('/:content', async (req, res) => {
+  try {
+    const messages = await Message.find({
+      content: {
+        "$regex": req.params.content,
+        "$options": "i"
+      }
+    }).sort({
+      date: -1
+    });
+    res.json(messages);
+    console.log(req.params.content)
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // Add new message
 router.post(
   '/',
   check('content', 'Message is required')
-    .not()
-    .isEmpty(),
+  .not()
+  .isEmpty(),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -30,7 +53,10 @@ router.post(
         errors: errors.array()
       });
     }
-    const { content, user } = req.body;
+    const {
+      content,
+      user
+    } = req.body;
 
     try {
       const newMessage = new Message({

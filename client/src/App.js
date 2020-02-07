@@ -5,7 +5,8 @@ import SearchBar from './components/layout/SearchBar';
 import Messages from './components/messages/Messages';
 import AddMessage from './components/messages/AddMessage';
 import AddUser from './components/users/AddUser';
-
+import { Provider } from 'react-redux';
+import store from './store';
 import './App.css';
 
 const App = () => {
@@ -14,14 +15,16 @@ const App = () => {
     M.AutoInit();
   });
   return (
-    <Fragment>
-      <SearchBar />
-      <div className='container'>
-        <Messages />
-      </div>{' '}
-      <AddMessage />
-      <AddUser />
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <SearchBar />
+        <div className='container'>
+          <Messages />
+        </div>{' '}
+        <AddMessage />
+        <AddUser />
+      </Fragment>
+    </Provider>
   );
 };
 
