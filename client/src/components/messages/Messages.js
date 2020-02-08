@@ -5,7 +5,10 @@ import Preloader from '../layout/Preloader';
 import PropTypes from 'prop-types';
 import { getMessages } from '../../actions/messageActions';
 
-const Messages = ({ message: { messages, loading }, getMessages }) => {
+const Messages = ({
+  message: { messages, messages_search, loading },
+  getMessages
+}) => {
   function useInterval(callback, delay) {
     const savedCallback = useRef();
 
@@ -29,7 +32,7 @@ const Messages = ({ message: { messages, loading }, getMessages }) => {
   useInterval(() => {
     getMessages();
     //eslint-disable-next-line
-  }, 1000);
+  }, 2000);
 
   // useEffect(() => {
   //   getMessages();
@@ -38,18 +41,31 @@ const Messages = ({ message: { messages, loading }, getMessages }) => {
 
   if (loading || messages === null) {
     return <Preloader />;
+  } else if (messages_search !== null) {
+    return (
+      <div className='chat'>
+        {!loading && messages_search.length === 0 ? (
+          <p className='center'> No messages to show... </p>
+        ) : (
+          messages_search.map(message => (
+            <MessageItem message={message} key={message._id} />
+          ))
+        )}{' '}
+      </div>
+    );
+  } else {
+    return (
+      <div className='chat'>
+        {!loading && messages.length === 0 ? (
+          <p className='center'> No messages to show... </p>
+        ) : (
+          messages.map(message => (
+            <MessageItem message={message} key={message._id} />
+          ))
+        )}{' '}
+      </div>
+    );
   }
-  return (
-    <div className='chat'>
-      {!loading && messages.length === 0 ? (
-        <p className='center'> No messages to show... </p>
-      ) : (
-        messages.map(message => (
-          <MessageItem message={message} key={message._id} />
-        ))
-      )}{' '}
-    </div>
-  );
 };
 
 Messages.propTypes = {

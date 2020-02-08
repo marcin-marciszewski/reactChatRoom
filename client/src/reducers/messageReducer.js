@@ -11,6 +11,7 @@ import {
 
 const initialState = {
     messages: null,
+    messages_search: null,
     loading: false,
     error: null,
     user: null
@@ -28,7 +29,7 @@ export default (state = initialState, action) => {
         case SEARCH_MESSAGES:
             return {
                 ...state,
-                messages: action.payload
+                messages_search: action.payload
             };
         case ADD_MESSAGE:
             return {

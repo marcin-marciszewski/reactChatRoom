@@ -28,7 +28,7 @@ export const getMessages = () => async dispatch => {
     }
 };
 
-// Search logs
+// Search messages
 export const searchMessages = (text) => async dispatch => {
     try {
         setLoading();
