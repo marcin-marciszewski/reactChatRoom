@@ -4,6 +4,7 @@
   <li>CSS</li>
   <li>Java Script</li>
   <li>React JS</li>
+  <li>Redux</li>
   <li>Epress</li>
   <li>Node.js</li>
   <li>MongoDB</li>
